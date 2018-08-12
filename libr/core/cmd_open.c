@@ -876,7 +876,7 @@ R_API void r_core_file_reopen_debug (RCore *core, const char *args) {
 		return;
 	}
 	int bits = core->assembler->bits;
-	char *oldname = r_file_abspath (binpath);
+	char *oldname = r_file_abspath (r_str_replace(binpath, " ", "\\ ", true));
 	char *newfile = r_str_newf ("dbg://%s %s", oldname, args);
 	char *newfile2 = strdup (newfile);
 	desc->uri = newfile;

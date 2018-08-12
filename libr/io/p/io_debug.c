@@ -118,6 +118,10 @@ static int fork_and_ptraceme(RIO *io, int bits, const char *cmd) {
 	int cmd_len = 0;
 	int i = 0;
 
+	if(strstr(argv[0], "\\ ")) {
+		argv[0] = r_str_replace(argv[0], "\\ ", " ", true);
+	}
+
 	si.cb = sizeof (si);
 	while (argv[i]) {
 		char *current = argv[i];
